@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{languageSwitcher.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view locale="#{languageSwitcher.locale}">
+	<h:head>
+		<h:outputStylesheet name="style.css" library="css" />
+		<ui:include src="vars/vars.xhtml"/>
+		<h:outputScript library="js" name="functions.js" />
+</h:head>
+
+	<h:body>
+
+		<div class="page">
+			<div class="header">
+				<ui:insert name="header">
+					<ui:include src="/template/tiles/header_tile.xhtml" />
+				</ui:insert>
+			</div>
+			<div class="menu">
+				<ui:insert name="menu">
+					<ui:include src="/template/tiles/menu_tile.xhtml" />
+				</ui:insert>
+			</div>
+			<div class="content">
+				<ui:insert name="content">
+				content
+			</ui:insert>
+			</div>
+			<div class="footer">
+				<ui:insert name="footer">
+					<ui:include src="/template/tiles/footer_tile.xhtml" />
+				</ui:insert>
+			</div>
+		</div>
+
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+	<ui:composition>
+		<div class="content_outer">
+			<div class="content_head">
+				<h:link value="#{msg['link.main.news']}" />
+				<h:outputText value=" &gt;&gt; " />
+				<h:outputText value="#{msg['title.main.newsList']}" />
+			</div>
+
+			<f:event type="preRenderView" listener="#{manager.resetForm}" />
+
+			<div class="content_list">
+				<h:form>
+					<ui:repeat value="#{form.newsList}" var="news">
+						<div class="list_cell">
+							<div class="list_cell_title">
+								<h:outputText value="#{msg['lable.newsTitle']}" />
+							</div>
+							<div class="list_cell_newsTitle">
+								<h:outputText value="#{news.newsTitle}" />
+							</div>
+							<div class="list_cell_date">
+								<h:outputText value="#{news.newsDate}">
+									<f:convertDateTime pattern="MM/dd/yyyy" />
+								</h:outputText>
+							</div>
+							<div class="list_cell_brief">
+								<h:outputText value="#{news.newsBrief}" />
+							</div>
+							<div class="list_cell_multibox">
+
+								<h:commandLink class="elem" value="#{msg['link.main.view']}"
+									action="#{manager.view(news.newsId)}" />
+
+								<h:commandLink class="elem" value="#{msg['link.main.edit']}"
+									action="#{manager.edit(news.newsId)}" />
+
+								<h:selectBooleanCheckbox id="checkbox"
+									value="#{form.checkboxes[news.newsId]}" />
+							</div>
+						</div>
+					</ui:repeat>
+
+					<div class="list_cell_button">
+						<h:panelGroup rendered="#{manager.isAnyNews()}">
+						<h:commandButton type="submit" action="#{manager.delete}"
+							value="#{msg['button.delete']}"
+							onclick="return submitDeleteNews(); return false;" />
+						</h:panelGroup>
+					</div>
+
+				</h:form>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>
